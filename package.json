@@ -6,6 +6,13 @@
   "repository": "https://github.com/Rodielm/lit-mobx-realworld",
   "bugs": "https://github.com/Rodielm/lit-mobx-realworld/issues",
   "author": "Rodiel Martinez Jimenez",
+  "main": "dist/app.es.js",
+  "exports": {
+    ".": "./dist/app.es.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build"
