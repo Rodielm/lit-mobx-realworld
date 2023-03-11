@@ -1,0 +1,20 @@
+{
+  "name": "lit-mobx-realworld",
+  "version": "0.0.1",
+  "description": "proof of concept with lit",
+  "private": true,
+  "repository": "https://github.com/Rodielm/lit-mobx-realworld",
+  "bugs": "https://github.com/Rodielm/lit-mobx-realworld/issues",
+  "author": "Rodiel Martinez Jimenez",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^2.6.1"
+  },
+  "devDependencies": {
+    "vite": "^4.1.4"
+  }
+}
