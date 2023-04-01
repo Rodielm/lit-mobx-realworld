@@ -1,75 +1,59 @@
-/**
- * @license
- * Copyright 2019 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
+import { Component, html } from './components/base'
+import {
+  AnimatedOutlet,
+  GenericCSS,
+  registerAnimation
+} from "slick-router/components/animated-outlet"
+import "./components/app-header"
+import "./components/Home/home-page"
 
-import { LitElement, html, css } from 'lit';
+class RevealAnimation extends GenericCSS {
+  leave(outlet, el, done) {
+    super.leave(outlet, el, done)
+    outlet.removeAttribute('animation')
+  }
+}
 
-/**
- * An example element.
- *
- * @fires count-changed - Indicates when the count changes
- * @slot - This element has a slot
- * @csspart button - The button
- */
-export class BlogApp extends LitElement {
-    static get styles() {
-        return css`
-      :host {
-        display: block;
-        border: solid 1px gray;
-        padding: 16px;
-        max-width: 800px;
-      }
+registerAnimation("reveal", RevealAnimation)
+
+customElements.define('outlet-elm', AnimatedOutlet)
+
+export class BlogApp extends Component {
+
+  static properties = {
+    stores: { type: Object, attribute: false }
+  }
+
+  static providedContexts = {
+    stores: { property: 'stores' }
+  }
+
+
+  firstUpdated() {
+    if (this.stores.commonStore.token) {
+      this.stores.userStore
+        .pullUser()
+        .finally(() => this.stores.commonStore.setAppLoaded())
+    } else {
+      this.stores.commonStore.setAppLoaded()
+    }
+  }
+
+
+  render() {
+    const token = this.stores.commonStore.token
+    return html`
+      <div>
+        <app-header></app-header>
+        <outlet-elm animation="reveal">
+          <div class="splah-screen">
+            Welcome ${token ? "back" : ''}<br /> Wait a second...
+          </div>
+        </outlet-elm>
+      </div>
     `;
-    }
+  }
 
-    static get properties() {
-        return {
-            /**
-             * The name to say "Hello" to.
-             * @type {string}
-             */
-            name: { type: String },
-
-            /**
-             * The number of times the button has been clicked.
-             * @type {number}
-             */
-            count: { type: Number },
-        };
-    }
-
-    constructor() {
-        super();
-        this.name = 'World';
-        this.count = 0;
-    }
-
-    render() {
-        return html`
-      <h1>${this.sayHello(this.name)}!</h1>
-      <button @click=${this._onClick} part="button">
-        Click Count: ${this.count}
-      </button>
-      <slot></slot>
-    `;
-    }
-
-    _onClick() {
-        this.count++;
-        this.dispatchEvent(new CustomEvent('count-changed'));
-    }
-
-    /**
-     * Formats a greeting
-     * @param name {string} The name to say "Hello" to
-     * @returns {string} A greeting directed at `name`
-     */
-    sayHello(name) {
-        return `Hello, ${name}`;
-    }
 }
 
 customElements.define('blog-app', BlogApp);
