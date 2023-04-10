@@ -5,7 +5,12 @@ import {
   registerAnimation
 } from "slick-router/components/animated-outlet"
 import "./components/app-header"
-import "./components/Home/home-page"
+// pages
+import "./pages/Home/home-page.js"
+import "./pages/Article/article-page.js"
+import "./pages/login-page.js"
+import "./pages/editor-page.js"
+
 
 class RevealAnimation extends GenericCSS {
   leave(outlet, el, done) {

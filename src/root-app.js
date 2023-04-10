@@ -8,6 +8,7 @@ import agent from "./agent.js"
 
 const stores = new RootStore();
 
+// To access by the console.
 window._____APP_STATE_____ = stores
 
 configureMobx({ enforceActions: "observed" })
@@ -15,7 +16,7 @@ agent.configure(stores)
 
 const router = createRouter(stores)
 router.listen()
-console.log("testinggggs", stores);
+
 
 export class RootApp extends LitElement {
 
