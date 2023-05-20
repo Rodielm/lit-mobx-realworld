@@ -2,21 +2,25 @@ import { LitElement, html } from "lit";
 import { configure as configureMobx } from 'mobx'
 import RootStore from "./stores/rootStore"
 import { createRouter } from "./router"
-import "./blog-app.js"
 import agent from "./agent.js"
+import "./blog-app.js"
 
+// Global //
 
+// initialise store 
 const stores = new RootStore();
 
 // To access by the console.
 window._____APP_STATE_____ = stores
 
 configureMobx({ enforceActions: "observed" })
-agent.configure(stores)
 
+// pass stores to agent and routers
+agent.configure(stores)
 const router = createRouter(stores)
 router.listen()
 
+// 
 
 export class RootApp extends LitElement {
 

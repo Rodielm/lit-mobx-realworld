@@ -8,9 +8,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js"
 import { ifDefined } from "lit-html/directives/if-defined.js"
 import { withContext } from "wc-context";
 
-
-
-// This a base component to use with others components
+// This a base component withContext and MobxReactionUpdate  
 class Component extends withContext(MobxReactionUpdate(LitElement)) {
     createRenderRoot() {
         return this

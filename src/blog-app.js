@@ -5,7 +5,7 @@ import {
   registerAnimation
 } from "slick-router/components/animated-outlet"
 import "./components/app-header"
-// pages
+
 import "./pages/Home/home-page.js"
 import "./pages/Article/article-page.js"
 import "./pages/login-page.js"
@@ -20,30 +20,31 @@ class RevealAnimation extends GenericCSS {
 }
 
 registerAnimation("reveal", RevealAnimation)
-
 customElements.define('outlet-elm', AnimatedOutlet)
 
 export class BlogApp extends Component {
 
   static properties = {
-    stores: { type: Object, attribute: false }
+    stores: {
+      type: Object,
+      attribute: false
+    }
   }
 
   static providedContexts = {
-    stores: { property: 'stores' }
+    stores: {
+      property: 'stores'
+    }
   }
-
 
   firstUpdated() {
     if (this.stores.commonStore.token) {
-      this.stores.userStore
-        .pullUser()
+      this.stores.userStore.pullUser()
         .finally(() => this.stores.commonStore.setAppLoaded())
     } else {
       this.stores.commonStore.setAppLoaded()
     }
   }
-
 
   render() {
     const token = this.stores.commonStore.token
