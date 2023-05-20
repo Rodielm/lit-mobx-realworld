@@ -4,9 +4,7 @@
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": [
-            "chrome 60"
-          ]
+          "browsers": ["chrome 60"]
         }
       }
     ]

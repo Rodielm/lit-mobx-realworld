@@ -1,5 +1,8 @@
 {
+    "editorconfig": true,
     "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true
+    "semi": true,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "bracketSameLine": true
 }
