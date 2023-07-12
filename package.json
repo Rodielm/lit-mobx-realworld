@@ -21,6 +21,7 @@
   "dependencies": {
     "@adobe/lit-mobx": "^2.0.0",
     "lit": "^2.6.1",
+    "marked": "^5.0.2",
     "mobx": "5.15.7",
     "slick-router": "^2.5.2",
     "superagent": "^8.0.9",
