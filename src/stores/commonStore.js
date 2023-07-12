@@ -22,6 +22,7 @@ class CommonStore {
     )
   }
 
+  // Old fashion
   // constructor() {
   //   makeObservable(this, {
   //     appName: observable,
