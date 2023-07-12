@@ -1,23 +1,74 @@
-# ![RealWorld Example App](logo.png)
+# ![Lit + Mobx Example App](logo.png)
 
-> ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
-
-
-### [Demo](https://demo.realworld.io/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
+> ### **Lit + Mobx** codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **[YOUR_FRAMEWORK]** including CRUD operations, authentication, routing, pagination, and more.
+### Demo (Coming soon) &nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-We've gone to great lengths to adhere to the **[YOUR_FRAMEWORK]** community styleguides & best practices.
+
+This codebase was created to demonstrate a fully fledged fullstack application built with **Lit** including CRUD operations, authentication, routing, pagination, and more.
+
+It was build using the [Lit + Mobx](https://github.com/blikblum/lit-element-mobx-realworld-example-app/) version as base (the state management is basically the same)
 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 
 # How it works
 
-> Describe the general architecture of your app here
+It uses a global state defined as Mobx decorated stores. LitElement provides the primitives for UI rendering and the component model (web component). [lit-mobx](https://github.com/adobe/lit-mobx) integrates the Mobx state with the components, making them reactive.
+
+The stores are exposed to components using a context mechanism through [wc-context](https://github.com/blikblum/wc-context) and the routing is provided by [slick-router](https://github.com/blikblum/slick-router)
+
+More info about development can be found in this [post](https://dev.to/blikblum/from-react-to-web-components-using-mobx-5abm)
+
 
 # Getting started
 
-> npm install, npm start, etc.
+You can view a live demo over at https://blikblum.github.io/lit-element-mobx-realworld-example-app/
+
+To get the frontend running locally:
+
+- Clone this repo
+- `npm i` to install dependencies
+- `npm run dev` to start the local server
+- `npm run build` to create a production build
+
+# Functionality overview
+
+The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication.
+
+**General functionality:**
+
+- Authenticate users via JWT (login/signup pages + logout button on settings page)
+- CRU\* users (sign up & settings page - no deleting required)
+- CRUD Articles
+- CR\*D Comments on articles (no updating required)
+- GET and display paginated lists of articles
+- Favorite articles
+- Follow other users
+
+**The general page breakdown looks like this:**
+
+- Home page (URL: /#/ )
+  - List of tags
+  - List of articles pulled from either Feed, Global, or by Tag
+  - Pagination for list of articles
+- Sign in/Sign up pages (URL: /#/login, /#/register )
+  - Use JWT (store the token in localStorage)
+- Settings page (URL: /#/settings )
+- Editor page to create/edit articles (URL: /#/editor, /#/editor/article-slug-here )
+- Article page (URL: /#/article/article-slug-here )
+  - Delete article button (only shown to article's author)
+  - Render markdown from server client side
+  - Comments section at bottom of page
+  - Delete comment button (only shown to comment's author)
+- Profile page (URL: /#/@username, /#/@username/favorites )
+  - Show basic user info
+  - List of articles populated from author's created articles or author's favorited articles
+
+  Built by Rodiel Martinez Jimenez (2023)
+
+<br />
+
+[![Brought to you by Thinkster](https://raw.githubusercontent.com/gothinkster/realworld/master/media/end.png)](https://thinkster.io)
 
