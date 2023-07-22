@@ -1,4 +1,4 @@
-import { Component, html } from './base';
+import { Component, html, nothing } from './base';
 
 class ListErrors extends Component {
   static properties = {
@@ -16,7 +16,7 @@ class ListErrors extends Component {
         </ul>
       `;
     } else {
-      return null;
+      return nothing;
     }
   }
 }

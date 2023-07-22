@@ -6,6 +6,9 @@ import {
   withRouterLinks,
 } from 'slick-router/middlewares/router-links';
 
+import './pages/Home/home-page'
+import './pages/login-page'
+
 export function createRouter(stores) {
   const appLoaded = new Promise(resolve => {
     const disposer = observe(
