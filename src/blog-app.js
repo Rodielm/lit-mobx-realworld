@@ -1,65 +1,60 @@
-import { Component, html } from './components/base'
+import { Component, html } from './components/base';
 import {
   AnimatedOutlet,
   GenericCSS,
-  registerAnimation
-} from "slick-router/components/animated-outlet"
-import "./components/app-header"
+  registerAnimation,
+} from 'slick-router/components/animated-outlet';
 
-import "./pages/Home/home-page.js"
-import "./pages/Article/article-page.js"
-import "./pages/login-page.js"
-import "./pages/editor-page.js"
-
+import './components/app-header';
 
 class RevealAnimation extends GenericCSS {
   leave(outlet, el, done) {
-    super.leave(outlet, el, done)
-    outlet.removeAttribute('animation')
+    super.leave(outlet, el, done);
+    outlet.removeAttribute('animation');
   }
 }
 
-registerAnimation("reveal", RevealAnimation)
-customElements.define('outlet-elm', AnimatedOutlet)
+registerAnimation('reveal', RevealAnimation);
+customElements.define('outlet-elm', AnimatedOutlet);
 
 export class BlogApp extends Component {
-
   static properties = {
     stores: {
       type: Object,
-      attribute: false
-    }
-  }
+      attribute: false,
+    },
+  };
 
   static providedContexts = {
     stores: {
-      property: 'stores'
-    }
-  }
+      property: 'stores',
+    },
+  };
 
   firstUpdated() {
     if (this.stores.commonStore.token) {
-      this.stores.userStore.pullUser()
-        .finally(() => this.stores.commonStore.setAppLoaded())
+      this.stores.userStore
+        .pullUser()
+        .finally(() => this.stores.commonStore.setAppLoaded());
     } else {
-      this.stores.commonStore.setAppLoaded()
+      this.stores.commonStore.setAppLoaded();
     }
   }
 
   render() {
-    const token = this.stores.commonStore.token
+    const token = this.stores.commonStore.token;
     return html`
       <div>
         <app-header></app-header>
         <outlet-elm animation="reveal">
           <div class="splah-screen">
-            Welcome ${token ? "back" : ''}<br /> Wait a second...
+            Welcome ${token ? 'back' : ''}<br />
+            Wait a second...
           </div>
         </outlet-elm>
       </div>
     `;
   }
-
 }
 
 customElements.define('blog-app', BlogApp);
