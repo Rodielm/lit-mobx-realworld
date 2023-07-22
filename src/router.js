@@ -8,6 +8,7 @@ import {
 
 import './pages/Home/home-page'
 import './pages/login-page'
+import './pages/register-page'
 
 export function createRouter(stores) {
   const appLoaded = new Promise(resolve => {
