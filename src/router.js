@@ -6,9 +6,12 @@ import {
   withRouterLinks,
 } from 'slick-router/middlewares/router-links';
 
-import './pages/Home/home-page'
-import './pages/login-page'
-import './pages/register-page'
+import './pages/Home/home-page';
+import './pages/login-page';
+import './pages/register-page';
+import './pages/Article/article-page';
+import './pages/profile-page';
+import './pages/settings-page';
 
 export function createRouter(stores) {
   const appLoaded = new Promise(resolve => {
@@ -42,6 +45,21 @@ export function createRouter(stores) {
         { name: 'register', component: 'register-page' },
         { name: 'editor', component: 'editor-page', path: 'editor/:slug?' },
         { name: 'article', component: 'article-page', path: 'article/:id' },
+        {
+          name: 'settings',
+          component: 'settings-page',
+          beforeEnter: transition => {
+            if (stores.userStore.currentUser == null) {
+              transition.redirectTo('home');
+            }
+          },
+        },
+        {
+          name: 'profile',
+          component: 'profile-page',
+          path: '@:username',
+          children: [{ name: 'profile.favorites' }],
+        },
       ],
     },
   ];
