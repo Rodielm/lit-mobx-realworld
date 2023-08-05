@@ -1,5 +1,4 @@
-import { Component, html } from '../../components/base'
-import { withRouterLinks } from 'slick-router/middlewares/router-links'
+import { Component, html } from '../components/base'
 
 class SettingsPage extends Component {
   static observedContexts = ['stores']
